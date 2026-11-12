@@ -9,7 +9,7 @@ int main(void)
         putchar(*text++);
         fflush(stdout);
         if (*text != '\0') {
-            Sleep(1000);
+            Sleep(500);
         }
     }
     putchar('\n');
