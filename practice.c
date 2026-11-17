@@ -68,22 +68,27 @@ int finalValueAfterOperations(char **operations, int operationsSize)
     }
     return count;
 }
-int mostWordsFound(char** sentences, int sentencesSize) {
-    int count = 0;  // 记录最多的单词数
+int mostWordsFound(char **sentences, int sentencesSize)
+{
+    int count = 0; // 记录最多的单词数
 
-    for (int i = 0; i < sentencesSize; i++) {
-        int temp = 0;   // 当前字符下标
-        int words = 1;  // 当前句子的单词数
+    for (int i = 0; i < sentencesSize; i++)
+    {
+        int temp = 0;  // 当前字符下标
+        int words = 1; // 当前句子的单词数
 
-        while (sentences[i][temp] != '\0') {
-            if (sentences[i][temp] == ' ') {
+        while (sentences[i][temp] != '\0')
+        {
+            if (sentences[i][temp] == ' ')
+            {
                 words++;
             }
 
-            temp++;  // 每检查一个字符，都向后移动
+            temp++; // 每检查一个字符，都向后移动
         }
 
-        if (count < words) {
+        if (count < words)
+        {
             count = words;
         }
     }
@@ -91,16 +96,102 @@ int mostWordsFound(char** sentences, int sentencesSize) {
     return count;
 }
 
-int maximumWealth(int** accounts, int accountsSize, int* accountsColSize) {
+int maximumWealth(int **accounts, int accountsSize, int *accountsColSize)
+{
     int maxWealth = 0;
-    for (int i = 0; i < accountsSize; i++) {
+    for (int i = 0; i < accountsSize; i++)
+    {
         int currentWealth = 0;
-        for (int j = 0; j < accountsColSize[i]; j++) {
+        for (int j = 0; j < accountsColSize[i]; j++)
+        {
             currentWealth += accounts[i][j];
         }
-        if (currentWealth > maxWealth) {
+        if (currentWealth > maxWealth)
+        {
             maxWealth = currentWealth;
         }
     }
     return maxWealth;
+}
+
+int diagonalSum(int **mat, int matSize, int *matColSize)
+{
+    int sum = 0;
+    for (int i = 0; i < matSize; i++)
+    {
+        sum += mat[i][i]; // 主对角线元素
+        if (i != matSize - 1 - i)
+        {
+            sum += mat[i][matSize - 1 - i]; // 副对角线元素
+        }
+    }
+    return sum;
+}
+
+bool checkXMatrix(int **grid, int gridSize, int *gridColSize)
+{
+    for (int i = 0; i < gridSize; i++)
+    {
+        for (int j = 0; j < gridColSize[i]; j++)
+        {
+            if (i == j || i + j == gridSize - 1)
+            {
+                if (grid[i][j] == 0)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (grid[i][j] != 0)
+                {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+int countNegatives(int **grid, int gridSize, int *gridColSize)
+{
+    int count = 0;
+    for (int i = 0; i < grid; i++)
+    {
+        for (int j = 0; j < gridColSize; j++)
+        {
+            if (grid[i][j] < 0)
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+int singleNumber(int *nums, int numsSize)
+{
+    int result = 0;
+    int temp = 0;
+    for (int i = 0; i < numsSize; i++)
+    {
+        for (int j = 0; j < numsSize; j++)
+        {
+            if (i != j && nums[i] == nums[j])
+            {
+
+                temp++;
+            }
+        }
+        if (temp > 0)
+        {
+            temp = 0;
+        }
+        else
+        {
+            result = nums[i];  return result;
+        }
+      
+        
+    }
+return 0;
 }
