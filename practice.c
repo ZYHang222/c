@@ -188,21 +188,76 @@ int singleNumber(int *nums, int numsSize)
         }
         else
         {
-            result = nums[i];  return result;
+            result = nums[i];
+            return result;
         }
-      
-        
     }
-return 0;
+    return 0;
 }
 
-char findTheDifference(char* s, char* t) {
+char findTheDifference(char *s, char *t)
+{
     char result = 0;
-    for (int i = 0; s[i] != '\0'; i++) {
+    for (int i = 0; s[i] != '\0'; i++)
+    {
         result ^= s[i];
     }
-    for (int i = 0; t[i] != '\0'; i++) {
+    for (int i = 0; t[i] != '\0'; i++)
+    {
         result ^= t[i];
     }
     return result;
 }
+bool isMonotonic(int *nums, int numsSize)
+{
+    int increasing = 1;
+    int decreasing = 1;
+
+    for (int i = 1; i < numsSize; i++)
+    {
+        if (nums[i] > nums[i - 1])
+        {
+            decreasing = 0;
+        }
+        if (nums[i] < nums[i - 1])
+        {
+            increasing = 0;
+        }
+    }
+
+    return increasing || decreasing;
+}
+int findMaxConsecutiveOnes(int *nums, int numsSize)
+{
+    int maxCount = 0;
+    int count = 0;
+    for (int i = 0; i < numsSize; i++)
+    {
+        if (nums[i] == 1)
+        {
+            count++;
+            if (count > maxCount)
+            {
+                maxCount = count;
+            }
+        }
+        else
+        {
+            count = 0;
+        }
+    }
+    return maxCount;
+}
+bool isMonotonic(int* nums, int numsSize) {
+int increasing = 1;
+int decreasing = 1;
+for (int i = 1; i < numsSize; i++) {
+    if (nums[i] > nums[i - 1]) {
+        decreasing = 0;
+    }
+    if (nums[i] < nums[i - 1]) {
+        increasing = 0;
+    }
+    
+}
+return increasing || decreasing;}
