@@ -1,30 +1,42 @@
 #include <stdio.h>
 
-char *toLowerCase(char *s)
+int mostWordsFound(char **sentences, int sentencesSize)
 {
-    char k = 'a' - 'A';
-    for (int i = 0; s[i] != '\0'; i++)
+    int maxWords = 0;
+    for (int i = 0; i < sentencesSize; i++)
     {
-
-        if (s[i] >= 'A' && s[i] <= 'Z')
+        int count = 0;
+        for (int j = 0; sentences[i][j] != '\0'; j++)
         {
-            s[i] += k;
+            count++;
         }
+        if(count>maxWords)maxWords=count;
     }
-    return s;
+    return maxWords;
 }
 
 int main(void)
 {
-    // 使用字符数组，方便直接修改其中的字符
-    char s[] = "Hello ABC 123!";
+    char *sentences1[] = {
+        "I love C",
+        "hello world",
+        "this is a good day"};
 
-    printf("转换前：%s\n", s);
+    char *sentences2[] = {
+        "hello",
+        "learning C"};
 
-    toLowerCase(s);
+    char *sentences3[] = {
+        "one"};
 
-    printf("转换后：%s\n", s);
-    printf("预期值:hello abc 123!\n");
+    printf("测试1：结果=%d，预期=5\n",
+           mostWordsFound(sentences1, 3));
+
+    printf("测试2：结果=%d，预期=2\n",
+           mostWordsFound(sentences2, 2));
+
+    printf("测试3：结果=%d，预期=1\n",
+           mostWordsFound(sentences3, 1));
 
     return 0;
 }
